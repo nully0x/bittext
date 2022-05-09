@@ -1,0 +1,23 @@
+{
+  "name": "bittext",
+  "version": "0.0.1",
+  "description": "Send and receive bitcoin over SMS",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/russeree/bittext.git"
+  },
+  "keywords": [
+    "Bitcoin",
+    "SMS"
+  ],
+  "author": "Russeree",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/russeree/bittext/issues"
+  },
+  "homepage": "https://github.com/russeree/bittext#readme"
+}
