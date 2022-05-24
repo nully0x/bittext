@@ -15,7 +15,7 @@ lnrpc.on("connect", async()=>{
  */
 let rpc_getinfo = async(lnrpc)=>{
     await lnrpc.write(`{
-            "id": "Russeree",
+            "id": "0",
             "method": "getinfo",
             "params": {}
         }`,async()=>{await lnrpc.on('data',function(data){
