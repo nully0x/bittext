@@ -1,28 +1,76 @@
 const fs    = require('fs');
 const net   = require('net');
 const path  = require('path');
-const lnrpc = net.createConnection(resolveHome("~/.lightning/bitcoin/lightning-rpc"));
 
-//Create to the lightning-cli rpc
-lnrpc.on("connect", async()=>{
-    console.log("Connection to Core Lightning established.");
-    console.log(await rpc_getinfo(lnrpc));
-});
-
-/**
- *Function to hook and get clighting info
- *@return{Object} A json object containing the current clightning version
- */
-let rpc_getinfo = async(lnrpc)=>{
-    await lnrpc.write(`{
-            "id": "0",
-            "method": "getinfo",
-            "params": {}
-        }`,async()=>{await lnrpc.on('data',function(data){
-                return(data.toString());
+class CoreLightningRPC {
+    /**
+     *Create the Core Lightning RPC Object
+     */
+    constructor(rpcSocket = resolveHome("~/.lightning/bitcoin/lightning-rpc")){
+        this.lnrpc = rpcSocket;
+    }
+    /**
+     *Send a request to the Core Lightning RPC Socket and return the result.
+     */
+    rpcRequest(cmd,params){
+        return new Promise((resolve,reject)=>{
+            var result = Buffer.alloc(0);
+            const lnrpc = net.createConnection(this.lnrpc);
+            /**
+             *Connect to the core lightning server and write the command(cmd)
+             */
+            lnrpc.on("connect",()=>{
+                const req = {
+                    method: cmd,
+                    params: params,
+                    id : 0
+                }
+                lnrpc.write(JSON.stringify(req));
             });
-        }
-    );
+            /**
+             *Data respons handling
+             */
+            lnrpc.on("data", data=>{
+                result = Buffer.concat([result, data]);
+                if(result.slice(-3).toString() === '}\n'){
+                    try{
+                        const resObj = JSON.parse(result.toString());
+                        lnrpc.end()
+                        if(resObj.error){
+                            reject(resObj.error)
+                        }
+                        else{
+                            resolve(resObj.result)
+                        }
+                    }
+                    catch(err){
+                        reject(err)
+                    }
+                }
+            });
+            /**
+             *lnrpc socket error handling
+             */
+            lnrpc.on("error", error=>{
+                client.end();
+                reject(err);
+            });
+        });
+    }
+    /**
+     *Core lightning RPC 'getinfo' command
+     */
+    getInfo(){
+        return new Promise((resolve, reject) => {
+            this.rpcRequest('getinfo', {})
+            .then(data=>{
+                console.log(data)
+                resolve(data)
+            })
+            .catch(reject)
+        })
+    }
+
 }
 
 /**
@@ -34,4 +82,12 @@ function resolveHome(filepath) {
         return path.join(process.env.HOME, filepath.slice(1));
     }
     return filepath;
+}
+
+/**
+ *Run as a standalone
+ */
+if (typeof require !== 'undefined' && require.main === module) {
+    let LNRPC = new CoreLightningRPC();
+    LNRPC.getInfo()
 }
