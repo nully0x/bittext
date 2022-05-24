@@ -94,3 +94,5 @@ if (typeof require !== 'undefined' && require.main === module) {
             console.log(res);
         })
 }
+
+module.exports CoreLightningRPC
