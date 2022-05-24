@@ -15,10 +15,10 @@ lnrpc.on("connect", async()=>{
  */
 let rpc_getinfo = async(lnrpc)=>{
     await lnrpc.write(`{
-            "id": "Reese",
-            "method": "newaddr",
+            "id": "Russeree",
+            "method": "getinfo",
             "params": {}
-        }`,async ()=>{await lnrpc.on('data', function(data){
+        }`,async()=>{await lnrpc.on('data',function(data){
                 return(data.toString());
             });
         }
@@ -27,7 +27,7 @@ let rpc_getinfo = async(lnrpc)=>{
 
 /**
  * @desc: Resolve ~ path to an absolue path
- * @retun{String}: a
+ * @retun{String}: the absolute path to the file
  */
 function resolveHome(filepath) {
     if (filepath[0] === '~') {
