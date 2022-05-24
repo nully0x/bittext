@@ -20,6 +20,7 @@ class CoreLightningRPC {
              *Connect to the core lightning server and write the command(cmd)
              */
             lnrpc.on("connect",()=>{
+                console.log("Connection to Core Lightning RPC established.")
                 const req = {
                     method: cmd,
                     params: params,
@@ -32,7 +33,7 @@ class CoreLightningRPC {
              */
             lnrpc.on("data", data=>{
                 result = Buffer.concat([result, data]);
-                if(result.slice(-3).toString() === '}\n'){
+                if(result.slice(-3).toString() === '}\n\n'){
                     try{
                         const resObj = JSON.parse(result.toString());
                         lnrpc.end()
@@ -51,8 +52,8 @@ class CoreLightningRPC {
             /**
              *lnrpc socket error handling
              */
-            lnrpc.on("error", error=>{
-                client.end();
+            lnrpc.on("error", err=>{
+                lnrpc.end();
                 reject(err);
             });
         });
@@ -64,7 +65,6 @@ class CoreLightningRPC {
         return new Promise((resolve, reject) => {
             this.rpcRequest('getinfo', {})
             .then(data=>{
-                console.log(data)
                 resolve(data)
             })
             .catch(reject)
@@ -90,4 +90,7 @@ function resolveHome(filepath) {
 if (typeof require !== 'undefined' && require.main === module) {
     let LNRPC = new CoreLightningRPC();
     LNRPC.getInfo()
+        .then(res=>{
+            console.log(res);
+        })
 }
