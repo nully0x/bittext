@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/russeree/bittext/issues"
   },
-  "homepage": "https://github.com/russeree/bittext#readme"
+  "homepage": "https://github.com/russeree/bittext#readme",
+  "dependencies": {
+    "twilio": "^3.77.1"
+  }
 }
