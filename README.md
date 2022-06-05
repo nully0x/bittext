@@ -1,5 +1,5 @@
 # Bittext
-Use bitcoin over sms - Bitcoin core - Twilio
+Use Bitcoin over SMS - Bitcoin Core - Lightning Core - Twilio
 
 # What is Bittext?
 Bittext is an interface between bitcoin sms service and the bitcoin core node.

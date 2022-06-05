@@ -70,7 +70,9 @@ class CoreLightningRPC {
             .catch(reject)
         })
     }
-
+    /**
+     *Core lightning RPC 'newaddr' command
+     */
 }
 
 /**
