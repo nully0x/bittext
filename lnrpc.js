@@ -62,17 +62,26 @@ class CoreLightningRPC {
      *Core lightning RPC 'getinfo' command
      */
     getInfo(){
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve, reject)=>{
             this.rpcRequest('getinfo', {})
             .then(data=>{
                 resolve(data)
             })
             .catch(reject)
-        })
+        });
     }
     /**
      *Core lightning RPC 'newaddr' command
      */
+    newAddr(){
+        return new Promise((resolve, reject)=>{
+            this.rpcRequest('newaddr',{})
+            .then(data=>{
+                resolve(data)
+            })
+            .catch(reject)
+        });
+    }
 }
 
 /**
