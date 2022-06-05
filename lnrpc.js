@@ -2,7 +2,7 @@ const fs    = require('fs');
 const net   = require('net');
 const path  = require('path');
 
-class CoreLightningRPC {
+class CoreLightningRPC{
     /**
      *Create the Core Lightning RPC Object
      */
@@ -98,12 +98,16 @@ function resolveHome(filepath) {
 /**
  *Run as a standalone
  */
-if (typeof require !== 'undefined' && require.main === module) {
+if (typeof require !== 'undefined' && require.main === module){
     let LNRPC = new CoreLightningRPC();
     LNRPC.getInfo()
         .then(res=>{
             console.log(res);
-        })
+        });
+    LNRPC.newAddr()
+        .then(res=>{
+            console.log(res);
+        });
 }
 
-module.exports CoreLightningRPC
+module.exports = CoreLightningRPC
