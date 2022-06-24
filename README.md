@@ -14,6 +14,3 @@ There are 3 primary layers this service is built on
 
 The first layer is the bitcoin-core json rpc. This is the pipe for intraprocess communications
 between bitcoin core and the various interfacing and security layers.
-
-# How does bittext work?
-Bittext
