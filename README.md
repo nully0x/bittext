@@ -10,3 +10,6 @@ There are 3 primary layers this service is built on
 - Bitcoin Core Node 
 - Core Lightning Node
 - Twillio
+
+# What Hardware is Bittex Designed For?
+Bittext is meant to be installed onto a Raspberry Pi running Bitcoin Core. 
