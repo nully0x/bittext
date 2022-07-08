@@ -5,7 +5,7 @@ Use Bitcoin over SMS - Bitcoin Core - Core Lightning - Twilio
 Bittext is an interface between bitcoin sms service and the bitcoin core node.
 This service utilizes the Twilio API and Bitcoin core.
 
-There are 3 pr5mary layers this service is built on 
+There are 3 primary layers this service is built on 
 - Docker Container
 - Bitcoin Core Node
 - Core Lightning Node
