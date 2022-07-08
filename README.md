@@ -12,4 +12,11 @@ There are 3 primary layers this service is built on
 - Twillio
 
 # What Hardware is Bittex Designed For?
-Bittext is meant to be installed onto a Raspberry Pi running Bitcoin Core. 
+Bittext is meant to be installed onto a Raspberry Pi 4 (2/4/8 GB) running Bitcoin Core. 
+To run bittext the first step is to run
+
+```
+git clone https://github.com/russeree/bittext
+cd bittext
+docker build -t bittext .
+```
