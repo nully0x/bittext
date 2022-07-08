@@ -7,7 +7,6 @@ This service utilizes the Twilio API, Bitcoin Core, and Core Lightning.
 
 There are 3 primary layers this service is built on 
 - Docker Container
-- Bitcoin Core Node
+- Bitcoin Core Node 
 - Core Lightning Node
 - Twillio
-- Bitcoin
