@@ -13,6 +13,14 @@ class BitText{
     constructor(){
         console.log(`Bittext - ${process.env.BITTEXT_VERSION} started.`);
         this.twClient = new twilio(accountSid,authToken);
+        this.bittext = express();
+        this.#bittextConfig();
+    }
+    #bittextConfig(){
+        console.log("Express Config")
+        this.bittext.post('/sms',(req,res)=>{
+
+        });
     }
 }
 
