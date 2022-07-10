@@ -19,7 +19,6 @@ class BitText{
     #bittextConfig(){
         console.log("Express Config")
         this.bittext.post('/sms',(req,res)=>{
-
         });
     }
 }
