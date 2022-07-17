@@ -16,9 +16,13 @@ class BitText{
         this.bittext = express();
         this.#bittextConfig();
     }
-    #bittextConfig(){
-        console.log("Express Config")
+    #bittextConfig(listenPort = 3000){
+        let port = process.env.PORT || listenPort
+        console.log("Bittext Express Configuration.");
         this.bittext.post('/sms',(req,res)=>{
+        });
+        this.bittext.listen(port,()=>{
+            console.log('Bittext is now listening on port ' + port);
         });
     }
 }
