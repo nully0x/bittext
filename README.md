@@ -10,7 +10,7 @@ There are 3 primary layers this service is built on
 - Core Lightning Node
 - Twillio
 
-# What Hardware is Bittex Designed For?
+# What Hardware is Bittext Designed For?
 Bittext is meant to be installed onto a Raspberry Pi 4 (2/4/8 GB) running Bitcoin Core. 
 To run bittext the first step is to run
 
